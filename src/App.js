@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import './App.scss';
+import Header from './components/Header';
+import Search from './components/Search';
+import TableCoin from './components/TableCoin';
 
 function App() {
+  // eslint-disable-next-line
+  const [coins, setCoins] = useState([])
+
+  const getData = async () => {
+    const apiURL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1'
+    const response = await fetch(apiURL).then((res) => res.json())
+    setCoins(response)
+  }
+
+  useEffect(()=>{
+    getData();
+  },[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <main>
+        <Search/>
+        <TableCoin coins={coins}/>
+      </main>
     </div>
   );
 }

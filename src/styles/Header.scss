@@ -1,0 +1,19 @@
+header {
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+  height: 70px;
+  background-color: rgb(18, 55, 156);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  .icono {
+    font-size: 30px;
+    color: #fff;
+  }
+  h1 {
+    color: #fff;
+    text-transform: uppercase;
+  }
+}
